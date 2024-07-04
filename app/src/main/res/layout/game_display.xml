@@ -64,10 +64,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.234"
-        custom:boardColor="#000000"
-        />
+        app:layout_constraintVertical_bias="0.244"
+        custom:Ocolor="#0000FF"
+        custom:Xcolor="#FF0000"
+        custom:boardColor="#000000" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
