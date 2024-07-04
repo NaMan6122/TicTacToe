@@ -8,4 +8,7 @@
     <string name="player2">Player2</string>
     <string name="enterButton">Enter</string>
     <string name="hintText">Enter your name</string>
+
+    <string name="Home">Home</string>
+    <string name="Afresh">Afresh</string>
 </resources>
