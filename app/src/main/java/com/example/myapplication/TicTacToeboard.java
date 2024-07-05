@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +21,7 @@ public class TicTacToeboard extends View {
     private final int WinLinecolor;
     private int cellSize;
     private final GameLogic game = new GameLogic();
-
+    private boolean winnerLine;
     private final Paint paint = new Paint();
     public TicTacToeboard(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -73,9 +75,15 @@ public class TicTacToeboard extends View {
             int row = (int)(y / cellSize);
             int col = (int)(x / cellSize);
 
-            if (game.updateGameBoard(row, col)) {
-                invalidate();
-                game.setPlayer(game.getPlayer() % 2 == 0 ? game.getPlayer()-1 : game.getPlayer()+1);
+            if(!winnerLine){
+                if (game.updateGameBoard(row, col)) {
+                    if(game.winnerCheck()){
+                        winnerLine = true;
+                        invalidate();
+                    }
+                    invalidate();
+                    game.setPlayer(game.getPlayer() % 2 == 0 ? game.getPlayer()-1 : game.getPlayer()+1);
+                }
             }
             return true;
         }
@@ -121,8 +129,15 @@ public class TicTacToeboard extends View {
                 paint);
     }
 
-    public void resetBoard(){
+    public void setUpGame(Button afresh, Button home, TextView playerDisplay, String[] names){
+        game.setAfreshButton(afresh);
+        game.setHomeButton(home);
+        game.setPlayerTurn(playerDisplay);
+        game.setPlayerNames(names);
+    }
+    public void resetBoard(){ //works with afresh button.
         game.resetGame();
+        winnerLine = false;
         invalidate(); //redraw the board again.
     }
 }
