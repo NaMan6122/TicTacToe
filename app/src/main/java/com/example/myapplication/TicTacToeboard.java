@@ -52,6 +52,11 @@ public class TicTacToeboard extends View {
         paint.setAntiAlias(true);
         drawGameBoard(canvas);
         drawMarkers(canvas);
+
+        if(winnerLine){
+            paint.setColor(WinLinecolor); //WinLinecolor form attrs.
+            drawWinningLine(canvas);
+        }
     }
 
     private void drawGameBoard(Canvas canvas){
@@ -127,6 +132,44 @@ public class TicTacToeboard extends View {
                 (col+1)*cellSize - cellSize*0.2f,
                 (row+1)*cellSize - cellSize*0.2f,
                 paint);
+    }
+
+    private void drawHorizontalLine(Canvas canvas, int row, int col){
+        canvas.drawLine(0, (float)(row*cellSize + cellSize/2), cellSize*3, (float)(row*cellSize + cellSize/2), paint);
+    }
+
+    private void drawVerticalLine(Canvas canvas, int row, int col){
+        canvas.drawLine((float)(col*cellSize + cellSize/2), 0, (float)(col*cellSize + cellSize/2), cellSize*3, paint);
+    }
+
+    private void drawDiag1(Canvas canvas){ //diagonal line with a negative slope(like this" \ ")
+        canvas.drawLine(0, 0, cellSize*3, cellSize*3, paint);
+    }
+
+    private void drawDiag2(Canvas canvas){ //diagonal line with a positive slope(like this" / ")
+        canvas.drawLine(0, cellSize*3, cellSize*3, 0, paint);
+    }
+
+    private void drawWinningLine(Canvas canvas){
+        int[] winnerType = game.getWinType();
+        int row = winnerType[0];
+        int col = winnerType[1];
+        int lineType = winnerType[2];
+
+        switch (lineType){
+            case 1:
+                drawHorizontalLine(canvas, row, col);
+                break;
+            case 2:
+                drawVerticalLine(canvas, row, col);
+                break;
+            case 3:
+                drawDiag2(canvas);
+                break;
+            case 4:
+                drawDiag1(canvas);
+                break;
+        }
     }
 
     public void setUpGame(Button afresh, Button home, TextView playerDisplay, String[] names){

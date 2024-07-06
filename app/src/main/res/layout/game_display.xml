@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GameDisplay"
-    android:background="#D7CCC8">
+    android:background="#7FFFD4">
 
     <TextView
         android:id="@+id/player_display"
@@ -70,6 +70,7 @@
         app:layout_constraintVertical_bias="0.375"
         custom:Ocolor="#0000FF"
         custom:Xcolor="#FF0000"
-        custom:boardColor="#000000" />
+        custom:boardColor="#000000"
+        custom:WinLinecolor="#C0C0C0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
