@@ -10,7 +10,7 @@ Features:
 
 Installation:
 - To run the app, Clone this repository:
-  {git clone https://github.com/NaMan6122/tic-tac-toe-android.git}
+  git clone https://github.com/NaMan6122/TicTacToe
 - Open the project in Android Studio.
 - Connect your Android device or use an emulator.
 - Build and run the project.
